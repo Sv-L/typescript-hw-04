@@ -1,9 +1,20 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from "react"
+
+type RequestStep = 'idle' | 'start' | 'pending' | 'finished';
+
+interface State{
+  isRequestInProgress: boolean;
+  requestStep: RequestStep,
+}
 
 const initialState: State = {
   isRequestInProgress: false,
   requestStep: 'idle',
 };
+
+type ActionType = "START_REQUEST" | "PENDING_REQUEST" | "FINISH_REQUEST" | "RESET_REQUEST"
+
+type Action ={type: ActionType}
 
 function requestReducer(state: State, action: Action): State {
   switch (action.type) {
